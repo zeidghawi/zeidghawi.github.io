@@ -3,14 +3,14 @@ body{
 }
 #title{
 	text-align: center;
-    font-family:avenir;
+    font-family:mr-eaves-xl-modern;
     font-size:34px;
 	font-weight:bold;
     color:#ffa737;
 }
 #subtitle{
 	text-align: center;
-    font-family:avenir;
+    font-family:mr-eaves-xl-modern;
     font-size:12px;
     color:#c48627;
 }
@@ -19,14 +19,14 @@ li{
 }
 #content{
     padding:15px;
-    font-family:avenir;
+    font-family:mr-eaves-xl-modern;
     font-size:20px;
     color:#c48627;
 }
 
 #paragraphtext{
     padding:15px;
-    font-family:avenir;
+    font-family:mr-eaves-xl-modern;
     font-size:14px;
     color:#000000;
 	text-align: justify;
