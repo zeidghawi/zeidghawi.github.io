@@ -8,6 +8,44 @@
 
 		<style>
 			
+			/*Homework dropup begin*/
+			.dropbtn {
+			  background-color: #c48627;
+			  color: white;
+			  padding: 16px;
+			  font-size: 20px;
+			  border: none;
+			}
+
+			.dropdown {
+			  position: relative;
+			  display: inline-block;
+			}
+
+			.dropdown-content {
+			  display: none;
+			  position: absolute;
+			  background-color: #f1f1f1;
+			  min-width: 160px;
+			  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			  /*bottom: 50px;*/
+			  z-index: 1;
+			}
+
+			.dropdown-content a {
+			  color: #c48627;
+			  padding: 12px 16px;
+			  text-decoration: none;
+			  display: block;
+			}
+
+			.dropdown-content a:hover {background-color: #ccc;}
+
+			.dropdown:hover .dropdown-content {display: block;}
+
+			.dropdown:hover .dropbtn {background-color: #3e8e41;}
+			
+			/*Homework dropup end*/
 			
 			img{
 				display: block;
@@ -20,42 +58,64 @@
     <body>
        
 	   <div id="title">
-	   		Zeid Ghawi | Data Visualizations | Spring 2019
+	   		Zeid's Data Viz
 	   </div>
 	   
 	   <div id="subtitle">
-	   	This is my project website for the Spring 2019 Data Visualization course
+	   	This is Zeid Ghawi's project website for the Spring 2019 Data Visualization course
 	   </div>
 	   
 	   <div id="content">
-	   	<ul>
-			<li>Self Data Collection<br/>
-				<img src="img/Self Data Collection Project FINAL.png" style="width:1255px;height:550px;"></li>
-				<div id="paragraphtext">Over the course of 10 days, I had collected data on my food for delivery orders. As I make my orders through a single platform, I was able to go back and collect data on which meals I had ordered, their cuisines, and the date and time the orders were placed. I also collected additional data on the nutritional value and macro composition of the different meals in an attempt to analogise the three factors of price, nutrition and schedule. Visualisiing the data in this way with date and time being the common denominator helped reveal trends in a handful of New York cuisines and their respective nutritional value for money, or alternatively, whether they were overcharging or undercharging for the nutrition they were providing. This also helped me in understanding my spending patterns with food across a 10 day period over the weekdays and weekends and has given me insight into the thresholds that would allow me to change my behaviour.
-				</div>
+	   	<!-- <ul> -->
+			<!-- <li> --><div>Self Data Collection</div><!-- <br/> -->
+				<!-- <img src="img/Self Data Collection Project FINAL.png" style="width:445px;height:200px;"> --><!-- </li> -->
+				
+				<!-- https://zeidghawi.github.io/Projects/Project 1/project1_page.html -->
+				
+				<a href="https://zeidghawi.github.io/Projects/Project 1/project1_page.html">
+				  <img src="img/Self Data Collection Project FINAL.png" alt="Project 1" style="margin-top:15px;width:445px;height:200px;border:0">
+				</a>
+				
+				<!-- <div id="paragraphtext">Over the course of 10 days, I had collected data on my food for delivery orders. As I make my orders through a single platform, I was able to go back and collect data on which meals I had ordered, their cuisines, and the date and time the orders were placed. I also collected additional data on the nutritional value and macro composition of the different meals in an attempt to analogise the three factors of price, nutrition and schedule. Visualisiing the data in this way with date and time being the common denominator helped reveal trends in a handful of New York cuisines and their respective nutritional value for money, or alternatively, whether they were overcharging or undercharging for the nutrition they were providing. This also helped me in understanding my spending patterns with food across a 10 day period over the weekdays and weekends and has given me insight into the thresholds that would allow me to change my behaviour.
+
+				</div> -->
 				<br>
-			<li>Public Data
+			<!-- <li> --><div style="margin-top:30px;">Public Data</div>
 				<!-- <br/> -->
-				<img src="img/2.png" style="width:100px;height:100px;"></li>
+				<img src="img/2.png" style="margin-top:15px;width:100px;height:100px;"><!-- </li> -->
 				<br>
-			<li>Final Project
+			<!-- <li> --><div style="margin-top:30px;">Final Project</div>
 				<!-- <br/> -->
-				<img src="img/3.png" style="width:100px;height:100px;"></li>
+				<img src="img/3.png" style="margin-top:15px;width:100px;height:100px;"><!-- </li> -->
 				<br>
-			<li>Homework</li>
-			<br>
-				<ul>
-					<li>
-						<a href="https://zeidghawi.github.io/Homework/Week 4/week4_hw.html" target="_blank">Week 4</a>
-					</li>
-					<li>
-						<a href="https://zeidghawi.github.io/Homework/Week 5/week5_hw.html" target="_blank">Week 5</a>
-					</li>
-					
-				</ul>
+				
 				
 			
-		</ul>
+			<div class="dropdown">
+				  <button class="dropbtn">Homework</button>
+				  <div class="dropdown-content">
+				    <a href="https://zeidghawi.github.io/Homework/Week 4/week4_hw.html" target="_blank">Week 4</a>
+				    <a href="https://zeidghawi.github.io/Homework/Week 5/week5_hw.html" target="_blank">Week 5</a>
+				  </div>
+				</div>
+				
+				
+				
+				
+			<!-- <li> --><!-- Homework --><!-- </li> -->
+			<!-- <br> -->
+				<!-- <ul> -->
+					<!-- <li> -->
+						<!-- <a href="https://zeidghawi.github.io/Homework/Week 4/week4_hw.html" target="_blank">Week 4</a> -->
+					<!-- </li> -->
+					<!-- <li> -->
+						<!-- <a href="https://zeidghawi.github.io/Homework/Week 5/week5_hw.html" target="_blank">Week 5</a> -->
+					<!-- </li> -->
+					
+				<!-- </ul> -->
+				
+			
+		<!-- </ul> -->
 	   </div>
        
     </body>
