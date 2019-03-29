@@ -17,13 +17,37 @@
         #button1{border:1px;background-color:#F7CBAE;color:white;margin-bottom:5px;border-radius:5px;padding:5px;width:200px;}
 		#button0{border:1px;background-color:#F7CBAE;color:white;margin-bottom:5px;border-radius:5px;padding:5px;width:200px;}
 		#button2{border:1px;background-color:#F7CBAE;color:white;margin-bottom:5px;border-radius:5px;padding:5px;width:200px;}
+		#button3{border:1px;background-color:#B89D76;color:white;margin-bottom:5px;border-radius:5px;padding:5px;width:200px;}
+		
+		
+		#button4{border:1px;background-color:#99C4BC;color:white;margin-bottom:5px;border-radius:5px;padding:5px;width:100px;}
+		#button5{border:1px;background-color:#99C4BC;color:white;margin-bottom:5px;border-radius:5px;padding:5px;width:100px;}
+		#button6{border:1px;background-color:#99C4BC;color:white;margin-bottom:5px;border-radius:5px;padding:5px;width:100px;}
+		#button7{border:1px;background-color:#99C4BC;color:white;margin-bottom:5px;border-radius:5px;padding:5px;width:100px;}
+		
+		img {
+			width: 20%;
+			height: 20%;
+		}
 	  
     </style>
 </head>
 
-    <div id="button0">Rat Sightings</div>
-	<div id="button1">Mouse Sightings</div>
-	<div id="button2">Conditions Attracting Rodents</div>
+	<div style="display:inline-block;">
+	    <img src="rodentSighting.jpg" alt="Rodent Sighting" style="float: right"/>
+	</div>
+
+    <div id="button0" style="vertical-align:top;">Rat Sightings</div>
+	<div id="button1" style="vertical-align:top;">Mouse Sightings</div>
+	<div id="button2" style="vertical-align:top;">Conditions Attracting Rodents</div>
+	<div id="button3" style="vertical-align:top;">Spatial Deviation of Sightings from Coniditions</div>
+	
+    <div id="button4" style="display:inline-block;vertical-align:top;">Jan, Feb, Mar</div>
+	<div id="button5" style="display:inline-block;vertical-align:top;">Apr, May, Jun</div>
+	<div id="button6" style="display:inline-block;vertical-align:top;">Jul, Aug, Sep</div>
+	<div id="button7" style="display:inline-block;vertical-align:top;">Oct, Nov, Dec</div>
+	
+	
 
 <body>
     
@@ -56,8 +80,8 @@
 
                 svg.append("path")
                     .attr("d", path(geo))
-                    .attr("fill", "none")
-                    .attr("stroke", "#aaaaaa")
+                    .attr("fill", "#5C5C5C")
+                    .attr("stroke", "white")
                     .attr("stroke-width",0.5)
             }
 
@@ -81,13 +105,7 @@
                 	.attr("opacity", 0.3)
             }
 			
-		  // const zoom = d3
-  // 		    .zoom()
-  // 		    .scaleExtent(ZOOM_THRESHOLD)
-  // 		    .on("zoom", zoomHandler);
-  // 		  function zoomHandler() {
-  // 		    g.attr("transform", d3.event.transform);
-  // 		  }
+	
 			
 			//MAKING OTHER DOTS HIDDEN ON CLICK
 			
@@ -96,6 +114,71 @@
 //                 var projection = d3.geoAlbers()
 //                         .fitExtent([[padding,padding],[width-padding,height-padding]],geo)
 // 			}
+
+
+
+
+//-----------------------------------------------------------------------------------------------------------
+
+
+
+
+// Get a subset of the data based on the group
+function getFilteredData(places, geo) {
+	return data.filter(function(point) { return point.group === parseInt(group); });
+}
+
+// Helper function to add new points to our data
+function enterPoints(places) {
+  // Add the points!
+  svg.selectAll("circle")
+    .data(data)
+    .enter().append("path")
+    .attr("class", "circle")
+    .attr('fill', 'red')
+    .attr("d", d3.svg.symbol().type("triangle-up"))
+    .attr("transform", function(d) { return "translate(" + x(d.x) + "," + y(d.y) + ")"; });
+}
+
+function exitPoints(places) {
+  svg.selectAll("circle")
+      .data(data)
+      .exit()
+      .remove();
+}
+
+function updatePoints(places) {
+  svg.selectAll("circle")
+      .data(data)
+      .transition()
+	  .attr("transform", function(d) { return "translate(" + x(d.x) + "," + y(d.y) + ")"; });
+}
+
+// New select element for allowing the user to select a group!
+var $groupSelector = document.querySelector('.group-select');
+var groupData = getFilteredData(data, $groupSelector.value);
+
+// Enter initial points filtered by default select value set in HTML
+enterPoints(groupData);
+
+$groupSelector.onchange = function(e) {
+  var group = e.target.value;
+  var groupData = getFilteredData(data, group);
+
+  updatePoints(groupData);
+  enterPoints(groupData);
+  exitPoints(groupData);
+
+};
+
+
+	  // const zoom = d3
+// 		    .zoom()
+// 		    .scaleExtent(ZOOM_THRESHOLD)
+// 		    .on("zoom", zoomHandler);
+// 		  function zoomHandler() {
+// 		    g.attr("transform", d3.event.transform);
+// 		  }
 
 
 </script>
