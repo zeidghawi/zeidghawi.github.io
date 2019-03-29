@@ -1,0 +1,64 @@
+body{
+    padding:20px;
+}
+#title{
+	text-align: center;
+    font-family:work-sans, sans-serif;
+    font-size:80px; 
+	font-weight:100;
+    color:#ffa737;
+	/*border-style: dotted;*/
+}
+
+/*For secondary page titles*/
+#secpagetitle{
+	text-align: center;
+    font-family:work-sans, sans-serif;
+    font-size:40px; 
+	font-weight:100;
+    color:#ffa737;
+	/*border-style: dotted;*/
+}
+
+#subtitle{
+	text-align: center;
+    font-family:work-sans, sans-serif;
+    font-size:12px;
+	font-weight:300;
+    color:#c48627;
+}
+li{
+    padding-bottom:20px;
+}
+#content{
+	text-align: center;
+    padding:120px;
+    font-family:work-sans, sans-serif;
+    font-size:20px;
+	font-weight:500;
+    color:#c48627;
+}
+
+#paragraphtext{
+    padding:15px;
+    font-family:work-sans, sans-serif;
+    font-size:14px;
+	font-weight:100;
+    color:#c48627;
+	text-align: justify;
+}
+
+#dropbtn{
+    font-family:work-sans, sans-serif;
+    font-size:20px;
+	font-weight:500;
+    color:#ffffff;
+}
+
+#dropdown-content{
+    font-family:work-sans, sans-serif;
+    font-size:20px;
+	font-weight:500;
+    color:#ffffff;
+}
+
