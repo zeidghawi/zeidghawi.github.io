@@ -40,12 +40,12 @@
     <div id="button0" style="vertical-align:top;">Rat Sightings</div>
 	<div id="button1" style="vertical-align:top;">Mouse Sightings</div>
 	<div id="button2" style="vertical-align:top;">Conditions Attracting Rodents</div>
-	<div id="button3" style="vertical-align:top;">Spatial Discrepancy of Sightings from Conditions</div>
+	<!-- <div id="button3" style="vertical-align:top;">Spatial Discrepancy of Sightings from Conditions</div> -->
 	
-    <div id="button4" style="display:inline-block;vertical-align:top;">Jan, Feb, Mar</div>
+    <!-- <div id="button4" style="display:inline-block;vertical-align:top;">Jan, Feb, Mar</div>
 	<div id="button5" style="display:inline-block;vertical-align:top;">Apr, May, Jun</div>
 	<div id="button6" style="display:inline-block;vertical-align:top;">Jul, Aug, Sep</div>
-	<div id="button7" style="display:inline-block;vertical-align:top;">Oct, Nov, Dec</div>
+	<div id="button7" style="display:inline-block;vertical-align:top;">Oct, Nov, Dec</div> -->
 	
 	
 
@@ -70,6 +70,27 @@
                 drawOutline(geo)
                 drawDots(places,geo)
             });
+			
+			
+			// SELECTING THE BUTTON TO UPDATE THE DOT MAP --- add the updateDots function within this????
+            d3.select("#button0")
+            .on("click",function(){//when it is clicked
+                updateDots("Rat Sightings", "#pink")//we update the data in the chart to column c2
+			  })
+			  
+              d3.select("#button1")
+              .on("click",function(){//when it is clicked
+                  updateDots("Mouse Sightings", "#0000FF")//we update the data in the chart to column c2
+  			  })
+			  
+              d3.select("#button2")
+              .on("click",function(){//when it is clicked
+                  updateDots("Conditions Attracting Rodents", "#0000FF")//we update the data in the chart to column c2
+  			  })
+			  
+			  
+			//------------------------------------------
+			
 
             function drawOutline(geo){
                 var padding = 50
@@ -96,18 +117,84 @@
                 	.append("circle")
                 	.attr("r", 1)
 					.attr("fill", "#F7CBAE")
-                	.attr("cx", function(d) {
-                  	    return projection([d.Longitude,d.Latitude])[0]
-                	})
-                	.attr("cy", function(d) {
-                  	    return projection([d.Longitude,d.Latitude])[1]
-                	})
-                	.attr("opacity", 0.3)
+                .attr("class",function(d){
+                    //UPDATED:
+                    //replace space in the descriptor so that it can be made into a class names.
+                    //class names cannot have spaces - they owuld make them more than 1 class
+                    return d.Descriptor.split(" ").join("_")
+
+                })
+            	.attr("cx", function(d) {
+              	    return projection([d.Longitude,d.Latitude])[0]
+            	})
+            	.attr("cy", function(d) {
+              	    return projection([d.Longitude,d.Latitude])[1]
+            	})
+            	.attr("opacity", 0.3)
+				
+                	// .attr("cx", function(d) {
+//                   	    return projection([d.Longitude,d.Latitude])[0]
+//                 	})
+//                 	.attr("cy", function(d) {
+//                   	    return projection([d.Longitude,d.Latitude])[1]
+//                 	})
+//                 	.attr("opacity", 0.3)
             }
 			
-	
+		
 			
 			//MAKING OTHER DOTS HIDDEN ON CLICK
+		
+		
+			//MAKING OTHER DOTS HIDDEN ON CLICK
+		
+			// function updateDots(column,color){
+//                 //UPDATED:
+//                 var className = column.split(" ").join("_")//get rid of spaces again
+//                 //UPDATED:
+//                     svg.selectAll("circle").attr("opacity",0)//select all the circles and make them transparent
+//                     svg.selectAll("."+column).attr("opacity",1).attr("fill","red")//select all the rat sighting circles and make them opaque and red.
+		
+			function updateDots(column,color){
+             // var padding = 50
+ //              var projection = d3.geoAlbers()
+ //                       .fitExtent([[padding,padding],[width-padding,height-padding]],geo)
+				var className = column.split(" ").join("_")
+				console.log(className)
+				//get rid of spaces again
+////UPDATED:
+                    svg.selectAll("circle").attr("opacity",0).style("fill","green")//select all the circles and make them transparent
+                    svg.selectAll("circle").data(className).attr("opacity",.5).style("fill","red").attr("r",3)//select all the rat sighting circles and make them opaque and red.
+
+// svg.selectAll("."+className).attr("opacity",.7).style("fill","red")
+
+			}
+// 				svg.selectAll("circle")
+// 				.data(places)
+// 				.transition()
+// 				.delay(function(d, i) {
+// 				return i * 500;
+// 				})
+// 				.duration(1500)
+// 				.enter()
+// 				.append("circle")
+// 				.attr("r", 1)
+// 				.attr("fill", color)
+// 				.attr("cx", function(d){
+// 					if (d.Complaint Type) {return projection([d.Longitude,d.Latitude])[0]}
+// 					            // else 	{ return "black" }
+// 				;})
+// 				.attr("cy", function(d){
+// 					if (d.Complaint Type) {return projection([d.Longitude,d.Latitude])[1]}
+// 									            // else 	{ return "black" }
+// 				;})
+// 				.attr("opacity", 0.3)
+//
+// 		}
+	
+		
+		
+		
 			
 			// function updateDots(places,geo,color1,color2){
 //                 var padding = 50
@@ -123,53 +210,53 @@
 
 
 
-// Get a subset of the data based on the group
-function getFilteredData(places, geo) {
-	return data.filter(function(point) { return point.group === parseInt(group); });
-}
-
-// Helper function to add new points to our data
-function enterPoints(places) {
-  // Add the points!
-  svg.selectAll("circle")
-    .data(data)
-    .enter().append("path")
-    .attr("class", "circle")
-    .attr('fill', 'red')
-    .attr("d", d3.svg.symbol().type("triangle-up"))
-    .attr("transform", function(d) { return "translate(" + x(d.x) + "," + y(d.y) + ")"; });
-}
-
-function exitPoints(places) {
-  svg.selectAll("circle")
-      .data(data)
-      .exit()
-      .remove();
-}
-
-function updatePoints(places) {
-  svg.selectAll("circle")
-      .data(data)
-      .transition()
-	  .attr("transform", function(d) { return "translate(" + x(d.x) + "," + y(d.y) + ")"; });
-}
-
-// New select element for allowing the user to select a group!
-var $groupSelector = document.querySelector('.group-select');
-var groupData = getFilteredData(data, $groupSelector.value);
-
-// Enter initial points filtered by default select value set in HTML
-enterPoints(groupData);
-
-$groupSelector.onchange = function(e) {
-  var group = e.target.value;
-  var groupData = getFilteredData(data, group);
-
-  updatePoints(groupData);
-  enterPoints(groupData);
-  exitPoints(groupData);
-
-};
+// // Get a subset of the data based on the group
+// function getFilteredData(places, geo) {
+// 	return data.filter(function(point) { return point.group === parseInt(group); });
+// }
+//
+// // Helper function to add new points to our data
+// function enterPoints(places) {
+//   // Add the points!
+//   svg.selectAll("circle")
+//     .data(data)
+//     .enter().append("path")
+//     .attr("class", "circle")
+//     .attr('fill', 'red')
+//     .attr("d", d3.svg.symbol().type("triangle-up"))
+//     .attr("transform", function(d) { return "translate(" + x(d.x) + "," + y(d.y) + ")"; });
+// }
+//
+// function exitPoints(places) {
+//   svg.selectAll("circle")
+//       .data(data)
+//       .exit()
+//       .remove();
+// }
+//
+// function updatePoints(places) {
+//   svg.selectAll("circle")
+//       .data(data)
+//       .transition()
+// 	  .attr("transform", function(d) { return "translate(" + x(d.x) + "," + y(d.y) + ")"; });
+// }
+//
+// // New select element for allowing the user to select a group!
+// var $groupSelector = document.querySelector('.group-select');
+// var groupData = getFilteredData(data, $groupSelector.value);
+//
+// // Enter initial points filtered by default select value set in HTML
+// enterPoints(groupData);
+//
+// $groupSelector.onchange = function(e) {
+//   var group = e.target.value;
+//   var groupData = getFilteredData(data, group);
+//
+//   updatePoints(groupData);
+//   enterPoints(groupData);
+//   exitPoints(groupData);
+//
+// };
 
 
 	  // const zoom = d3
