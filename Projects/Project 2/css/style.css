@@ -62,3 +62,17 @@ li{
     color:#ffffff;
 }
 
+#buttonstyle{
+	border:1px;
+	background-color:#F7CBAE;
+	color:white;
+	margin-bottom:5px;
+	border-radius:5px;
+	padding:5px;
+	width:200px;
+}
+
+#button1{border:1px;background-color:#F7CBAE;color:white;margin-bottom:5px;border-radius:5px;padding:5px;width:200px;}
+#button0{border:1px;background-color:#F7CBAE;color:white;margin-bottom:5px;border-radius:5px;padding:5px;width:200px;}
+#button2{border:1px;background-color:#F7CBAE;color:white;margin-bottom:5px;border-radius:5px;padding:5px;width:200px;}
+
